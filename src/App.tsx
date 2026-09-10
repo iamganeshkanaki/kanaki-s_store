@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
+import { DairySpecialtyBanner } from './components/DairySpecialtyBanner';
 import { GroceryWizard } from './components/GroceryWizard';
 import { OrderTracker } from './components/OrderTracker';
 import { FeedbackSection } from './components/FeedbackSection';
@@ -31,15 +32,32 @@ export default function App() {
   const [wizardInitialOption, setWizardInitialOption] = useState<'manual' | 'upload'>('manual');
   const [activeTrackingNumber, setActiveTrackingNumber] = useState<string>('');
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [preselectedDairyItems, setPreselectedDairyItems] = useState<
+    Array<{ name: string; quantity: number; unit: string; notes?: string }> | undefined
+  >(undefined);
 
   const handleStartManual = () => {
     setWizardInitialOption('manual');
+    setPreselectedDairyItems(undefined);
     setCurrentTab('create');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleStartUpload = () => {
     setWizardInitialOption('upload');
+    setPreselectedDairyItems(undefined);
+    setCurrentTab('create');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleQuickAddDairyItem = (item: { name: string; quantity: number; unit: string; notes: string }) => {
+    setPreselectedDairyItems([
+      { name: item.name, quantity: item.quantity, unit: item.unit, notes: item.notes },
+      { name: 'Pure Cow Milk', quantity: 2, unit: 'litre', notes: 'Daily Fresh' },
+      { name: 'Fresh Soft Paneer', quantity: 500, unit: 'g', notes: 'Melt in mouth' },
+      { name: 'Sona Masoori Rice', quantity: 5, unit: 'kg', notes: 'Aged' },
+    ]);
+    setWizardInitialOption('manual');
     setCurrentTab('create');
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
@@ -75,6 +93,12 @@ export default function App() {
               onStartUpload={handleStartUpload}
             />
 
+            {/* Special Dairy & Curd Business Showcase */}
+            <DairySpecialtyBanner
+              onQuickAddItem={handleQuickAddDairyItem}
+              onOrderDairyNow={handleStartManual}
+            />
+
             {/* How It Works (Section 21) */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <div className="text-center space-y-3 max-w-2xl mx-auto mb-12">
@@ -95,13 +119,13 @@ export default function App() {
                     step: '01',
                     icon: <Leaf className="w-6 h-6 text-[#2D6A4F]" />,
                     title: '1. Enter Details',
-                    desc: 'Provide your name, phone number, and delivery address in Hubballi.',
+                    desc: 'Provide your name, phone number, and delivery address in Solapur (413005).',
                   },
                   {
                     step: '02',
                     icon: <UploadCloud className="w-6 h-6 text-[#2D6A4F]" />,
                     title: '2. Create or Upload',
-                    desc: 'Type your list manually or simply upload a photo of your handwritten notepad.',
+                    desc: 'Type items, pick fresh curd & dairy specials, or upload a handwritten notepad photo.',
                   },
                   {
                     step: '03',
@@ -275,6 +299,7 @@ export default function App() {
         {currentTab === 'create' && (
           <GroceryWizard
             initialOption={wizardInitialOption}
+            initialItems={preselectedDairyItems}
             onOrderSubmitted={handleOrderSubmitted}
             onTrackOrder={handleTrackOrder}
           />

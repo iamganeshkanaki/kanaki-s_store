@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import {
   User,
   Phone,
@@ -29,6 +29,7 @@ import { GroceryItem, Order } from '../types';
 
 interface GroceryWizardProps {
   initialOption?: 'manual' | 'upload';
+  initialItems?: Array<{ name: string; quantity: number; unit: string; notes?: string }>;
   onOrderSubmitted?: (order: Order) => void;
   onTrackOrder?: (orderNumber: string) => void;
 }
@@ -36,24 +37,32 @@ interface GroceryWizardProps {
 const COMMON_UNITS = ['kg', 'g', 'litre', 'ml', 'packet', 'piece', 'bunch', 'dozen', 'box'];
 
 const POPULAR_GROCERY_SUGGESTIONS = [
-  { name: 'Sona Masoori Rice', unit: 'kg', defaultQty: 5 },
-  { name: 'Whole Wheat Atta', unit: 'kg', defaultQty: 5 },
-  { name: 'Toor Dal', unit: 'kg', defaultQty: 2 },
-  { name: 'Moong Dal', unit: 'kg', defaultQty: 1 },
-  { name: 'Sunflower Cooking Oil', unit: 'litre', defaultQty: 2 },
-  { name: 'Refined Sugar', unit: 'kg', defaultQty: 2 },
-  { name: 'Tata Salt', unit: 'kg', defaultQty: 1 },
-  { name: 'Fresh Milk', unit: 'litre', defaultQty: 2 },
-  { name: 'Pure Cow Ghee', unit: 'g', defaultQty: 500 },
-  { name: 'Fresh Tomatoes', unit: 'kg', defaultQty: 2 },
-  { name: 'Onions', unit: 'kg', defaultQty: 3 },
-  { name: 'Potatoes', unit: 'kg', defaultQty: 2 },
-  { name: 'Turmeric Powder', unit: 'g', defaultQty: 200 },
-  { name: 'Tea Powder', unit: 'g', defaultQty: 500 },
+  // Fresh Dairy & Curd Specialties
+  { name: 'Fresh Curd (Dahi)', unit: 'kg', defaultQty: 1, category: 'dairy' },
+  { name: 'Fresh Malai', unit: 'g', defaultQty: 250, category: 'dairy' },
+  { name: 'Pure Cow / Buffalo Milk', unit: 'litre', defaultQty: 2, category: 'dairy' },
+  { name: 'Fresh Soft Paneer', unit: 'g', defaultQty: 500, category: 'dairy' },
+  { name: 'Spiced Taak (Buttermilk)', unit: 'packet', defaultQty: 2, category: 'dairy' },
+  { name: 'Sweet Delicious Lassi', unit: 'ml', defaultQty: 500, category: 'dairy' },
+  { name: 'Pure Cow Ghee', unit: 'g', defaultQty: 500, category: 'dairy' },
+  // Daily Grocery Staples
+  { name: 'Sona Masoori Rice', unit: 'kg', defaultQty: 5, category: 'staple' },
+  { name: 'Whole Wheat Atta', unit: 'kg', defaultQty: 5, category: 'staple' },
+  { name: 'Toor Dal', unit: 'kg', defaultQty: 2, category: 'staple' },
+  { name: 'Moong Dal', unit: 'kg', defaultQty: 1, category: 'staple' },
+  { name: 'Sunflower Cooking Oil', unit: 'litre', defaultQty: 2, category: 'staple' },
+  { name: 'Refined Sugar', unit: 'kg', defaultQty: 2, category: 'staple' },
+  { name: 'Tata Salt', unit: 'kg', defaultQty: 1, category: 'staple' },
+  { name: 'Fresh Tomatoes', unit: 'kg', defaultQty: 2, category: 'produce' },
+  { name: 'Onions', unit: 'kg', defaultQty: 3, category: 'produce' },
+  { name: 'Potatoes', unit: 'kg', defaultQty: 2, category: 'produce' },
+  { name: 'Turmeric Powder', unit: 'g', defaultQty: 200, category: 'spice' },
+  { name: 'Tea Powder', unit: 'g', defaultQty: 500, category: 'staple' },
 ];
 
 export const GroceryWizard: React.FC<GroceryWizardProps> = ({
   initialOption = 'manual',
+  initialItems,
   onOrderSubmitted,
   onTrackOrder,
 }) => {
@@ -67,18 +76,45 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
     mobile: '',
     email: '',
     address: '',
-    city: 'Hubballi',
-    pincode: '',
+    city: 'Solapur',
+    pincode: '413005',
   });
 
   const [formErrors, setFormErrors] = useState<{ [key: string]: string }>({});
 
   // Grocery items list
-  const [items, setItems] = useState<Array<{ id: string; name: string; quantity: number; unit: string; notes: string }>>([
-    { id: '1', name: 'Sona Masoori Rice', quantity: 5, unit: 'kg', notes: 'Aged' },
-    { id: '2', name: 'Toor Dal', quantity: 2, unit: 'kg', notes: 'Unpolished' },
-    { id: '3', name: 'Fresh Milk', quantity: 2, unit: 'litre', notes: 'Cow milk' },
-  ]);
+  const [items, setItems] = useState<Array<{ id: string; name: string; quantity: number; unit: string; notes: string }>>(() => {
+    if (initialItems && initialItems.length > 0) {
+      return initialItems.map((item, idx) => ({
+        id: `item-${Date.now()}-${idx}`,
+        name: item.name,
+        quantity: item.quantity,
+        unit: item.unit,
+        notes: item.notes || '',
+      }));
+    }
+    return [
+      { id: '1', name: 'Fresh Curd (Dahi)', quantity: 1, unit: 'kg', notes: 'Daily Fresh Batch' },
+      { id: '2', name: 'Fresh Malai', quantity: 250, unit: 'g', notes: 'Thick Cream' },
+      { id: '3', name: 'Pure Cow Milk', quantity: 2, unit: 'litre', notes: 'Morning Delivery' },
+      { id: '4', name: 'Fresh Soft Paneer', quantity: 500, unit: 'g', notes: 'Farm Fresh' },
+      { id: '5', name: 'Sona Masoori Rice', quantity: 5, unit: 'kg', notes: 'Aged' },
+    ];
+  });
+
+  useEffect(() => {
+    if (initialItems && initialItems.length > 0) {
+      setItems(
+        initialItems.map((item, idx) => ({
+          id: `item-${Date.now()}-${idx}`,
+          name: item.name,
+          quantity: item.quantity,
+          unit: item.unit,
+          notes: item.notes || '',
+        }))
+      );
+    }
+  }, [initialItems]);
 
   // Option B: Image Upload & OCR state
   const [uploadedImage, setUploadedImage] = useState<string | null>(null);
@@ -283,18 +319,18 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
       // Heading
       ctx.font = 'bold 22px cursive, sans-serif';
       ctx.fillStyle = '#1E3A8A';
-      ctx.fillText("Kanaki's Store - Weekly Grocery", 110, 42);
+      ctx.fillText("Kanaki's Store & Dairy - Grocery", 110, 42);
 
       // Items
       ctx.font = '19px cursive, sans-serif';
       ctx.fillStyle = '#1F2937';
       const sampleText = [
-        '1. Rice 5kg (Sona Masoori)',
-        '2. Sugar 2kg',
-        '3. Milk 3L (Fresh Morning)',
-        '4. Tomato 2kg',
-        '5. Toor Dal 1kg',
-        '6. Sunflower Oil 2L',
+        '1. Fresh Curd (Dahi) 1kg',
+        '2. Fresh Malai 250g',
+        '3. Soft Paneer 500g',
+        '4. Spiced Taak 2 packets',
+        '5. Fresh Milk 2L',
+        '6. Sona Masoori Rice 5kg',
       ];
       sampleText.forEach((txt, i) => {
         ctx.fillText(txt, 110, 85 + i * 35);
@@ -560,7 +596,7 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
                 <input
                   id="cust-city-input"
                   type="text"
-                  placeholder="Hubballi"
+                  placeholder="Solapur"
                   value={customer.city}
                   onChange={(e) => setCustomer({ ...customer, city: e.target.value })}
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#D8CFBF] text-sm font-medium focus:outline-hidden focus:border-[#2D6A4F]"
@@ -578,7 +614,7 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
                 <input
                   id="cust-pincode-input"
                   type="text"
-                  placeholder="e.g. 580020"
+                  placeholder="413005"
                   value={customer.pincode}
                   onChange={(e) => setCustomer({ ...customer, pincode: e.target.value })}
                   className="w-full pl-10 pr-4 py-3 rounded-xl border border-[#D8CFBF] text-sm font-medium focus:outline-hidden focus:border-[#2D6A4F]"

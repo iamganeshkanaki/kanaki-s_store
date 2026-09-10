@@ -38,10 +38,10 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
             We Are Here To Help
           </span>
           <h3 className="text-2xl font-bold text-[#1B4332] font-display">
-            Contact Kanaki's Store
+            Contact Kanaki's Store & Dairy
           </h3>
           <p className="text-xs text-stone-500">
-            Have questions about item availability, order delivery, or bulk orders?
+            Inquire about fresh curd (dahi), malai, milk, paneer, taak, lassi, or any grocery staple availability and doorstep delivery.
           </p>
         </div>
 
@@ -49,19 +49,23 @@ export const ContactModal: React.FC<ContactModalProps> = ({ isOpen, onClose }) =
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs bg-[#FAF8F5] p-4 rounded-2xl border border-stone-200">
           <div className="flex items-center gap-2 text-stone-700">
             <Phone className="w-4 h-4 text-[#2D6A4F] shrink-0" />
-            <span>+91 98765 43210</span>
+            <span>+91 8600476638 (Primary)</span>
           </div>
           <div className="flex items-center gap-2 text-stone-700">
+            <Phone className="w-4 h-4 text-[#2D6A4F] shrink-0" />
+            <span>+91 9373173377 (Alt)</span>
+          </div>
+          <div className="flex items-center gap-2 text-stone-700 col-span-2">
             <Mail className="w-4 h-4 text-[#2D6A4F] shrink-0" />
-            <span>orders@kanakisstore.com</span>
+            <span>iamganeshkanaki@gmail.com</span>
           </div>
           <div className="flex items-start gap-2 text-stone-700 col-span-2">
             <MapPin className="w-4 h-4 text-[#2D6A4F] shrink-0 mt-0.5" />
-            <span>Station Road, Near Gandhi Chowk, Hubballi, Karnataka 580020</span>
+            <span>J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment, Pincode 413005</span>
           </div>
           <div className="flex items-center gap-2 text-stone-700 col-span-2">
             <Clock className="w-4 h-4 text-[#2D6A4F] shrink-0" />
-            <span>Open Every Day: 7:00 AM – 9:30 PM</span>
+            <span>Open Every Day: 7:00 AM – 9:30 PM (Fresh morning & evening batches)</span>
           </div>
         </div>
 

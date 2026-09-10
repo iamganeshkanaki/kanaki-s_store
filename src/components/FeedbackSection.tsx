@@ -4,11 +4,14 @@ import { Feedback } from '../types';
 import { api } from '../services/api';
 
 const QUICK_SENTIMENTS = [
-  'Excellent',
-  'Very Good',
-  'Good',
-  'Average',
-  'Needs Improvement',
+  'Super Fresh Thick Curd',
+  'Pure Milk & Fresh Malai',
+  'Soft Tender Paneer',
+  'Refreshing Taak (Buttermilk)',
+  'Sweet Delicious Lassi',
+  'Excellent Grocery Packing',
+  'Very Good & Timely Delivery',
+  'Organic & Clean Items',
 ];
 
 export const FeedbackSection: React.FC = () => {
@@ -81,14 +84,30 @@ export const FeedbackSection: React.FC = () => {
           <div className="lg:col-span-7 bg-white p-6 sm:p-10 rounded-3xl border border-[#E8E2D9] shadow-sm space-y-6">
             <div className="space-y-2">
               <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#EAF5EE] text-[#1B4332]">
-                Customer Reviews
+                Customer Reviews & Dairy Feedback
               </span>
               <h2 className="text-2xl sm:text-3xl font-extrabold text-[#1B4332] font-display">
                 We'd Love to Hear From You 🌿
               </h2>
               <p className="text-xs sm:text-sm text-stone-600">
-                Your feedback helps Kanaki's Store keep groceries fresh, clean, and delivered right on time.
+                Your feedback helps Kanaki's Store & Dairy keep groceries, daily fresh curd, malai, milk, paneer, taak, and lassi pure and delivered right on time.
               </p>
+            </div>
+
+            {/* Direct Contact Reference Badge */}
+            <div className="p-4 rounded-2xl bg-[#FAF8F5] border border-[#E8E2D9] text-xs space-y-2 text-stone-700">
+              <div className="flex flex-wrap items-center justify-between gap-2 border-b border-stone-200/80 pb-2">
+                <span className="font-bold text-[#1B4332]">Store & Dairy Feedback Helpline:</span>
+                <span className="font-bold text-[#2D6A4F] text-sm">📞 +91 8600476638 / 9373173377</span>
+              </div>
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-[11px] text-stone-600">
+                <div>
+                  <span className="font-semibold text-stone-800">Address:</span> J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment, Pincode 413005
+                </div>
+                <div>
+                  <span className="font-semibold text-stone-800">Email:</span> iamganeshkanaki@gmail.com
+                </div>
+              </div>
             </div>
 
             {successMessage && (

@@ -20,14 +20,14 @@ export const Hero: React.FC<HeroProps> = ({ onStartManual, onStartUpload }) => {
             {/* Nature pill badge */}
             <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#EAF5EE] border border-[#D8F3DC] text-[#1B4332] text-xs sm:text-sm font-semibold shadow-2xs">
               <Leaf className="w-4 h-4 text-[#2D6A4F]" />
-              <span>Direct From Trusted Farmers & Wholesalers</span>
+              <span>Specialty: Daily Fresh Curd, Malai, Milk, Paneer, Taak & Lassi • Solapur</span>
             </div>
 
             {/* Main Heading */}
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-[#1B4332] tracking-tight leading-[1.15] font-display">
-              Buy Any Type of Groceries, <br className="hidden sm:inline" />
+              Buy Any Type of Groceries <br className="hidden sm:inline" />
               <span className="text-[#40916C] relative">
-                All in One Place
+                & Fresh Dairy Products
                 <svg className="absolute -bottom-2 left-0 w-full text-[#74C69D]/40" viewBox="0 0 200 8" fill="none">
                   <path d="M1 5.5C40 2 160 2 199 5.5" stroke="currentColor" strokeWidth="4" strokeLinecap="round" />
                 </svg>
@@ -36,8 +36,7 @@ export const Hero: React.FC<HeroProps> = ({ onStartManual, onStartUpload }) => {
 
             {/* Subheading */}
             <p className="text-lg sm:text-xl text-stone-600 max-w-2xl font-normal leading-relaxed">
-              Create your grocery list, upload your handwritten list, and let{' '}
-              <strong className="text-[#1B4332] font-semibold">Kanaki's Store</strong> keep everything organized for you.
+              Order daily fresh <strong className="text-[#1B4332] font-semibold">curd, malai, milk, paneer, taak, and lassi</strong>, or type and upload your handwritten grocery list. <strong className="text-[#1B4332]">Kanaki's Store & Dairy</strong> keeps everything organized for you.
             </p>
 
             {/* Two Action Buttons as requested in Section 5 */}
@@ -108,41 +107,41 @@ export const Hero: React.FC<HeroProps> = ({ onStartManual, onStartUpload }) => {
                   <div className="space-y-2.5 pt-3 text-xs">
                     <div className="flex items-center justify-between p-2 rounded-xl bg-[#FAF9F5] border border-stone-100">
                       <div className="flex items-center gap-2 font-medium text-stone-800">
-                        <span className="text-base">🌾</span>
-                        <span>Sona Masoori Rice (Aged)</span>
+                        <span className="text-base">🥣</span>
+                        <span>Fresh Thick Curd (Dahi)</span>
                       </div>
                       <span className="font-bold text-[#2D6A4F] bg-white px-2 py-0.5 rounded-lg border border-stone-200">
-                        5 kg
+                        1 kg
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between p-2 rounded-xl bg-[#FAF9F5] border border-stone-100">
                       <div className="flex items-center gap-2 font-medium text-stone-800">
                         <span className="text-base">🥛</span>
-                        <span>Fresh Farm Cow Milk</span>
+                        <span>Fresh Malai & Pure Milk</span>
                       </div>
                       <span className="font-bold text-[#2D6A4F] bg-white px-2 py-0.5 rounded-lg border border-stone-200">
-                        3 litre
+                        250g / 2L
                       </span>
                     </div>
 
                     <div className="flex items-center justify-between p-2 rounded-xl bg-[#FAF9F5] border border-stone-100">
                       <div className="flex items-center gap-2 font-medium text-stone-800">
-                        <span className="text-base">🍅</span>
-                        <span>Ripe Hybrid Tomatoes</span>
-                      </div>
-                      <span className="font-bold text-[#2D6A4F] bg-white px-2 py-0.5 rounded-lg border border-stone-200">
-                        2 kg
-                      </span>
-                    </div>
-
-                    <div className="flex items-center justify-between p-2 rounded-xl bg-[#FAF9F5] border border-stone-100">
-                      <div className="flex items-center gap-2 font-medium text-stone-800">
-                        <span className="text-base">🥣</span>
-                        <span>Pure Cow Ghee (Organic)</span>
+                        <span className="text-base">🧀</span>
+                        <span>Fresh Soft Paneer</span>
                       </div>
                       <span className="font-bold text-[#2D6A4F] bg-white px-2 py-0.5 rounded-lg border border-stone-200">
                         500 g
+                      </span>
+                    </div>
+
+                    <div className="flex items-center justify-between p-2 rounded-xl bg-[#FAF9F5] border border-stone-100">
+                      <div className="flex items-center gap-2 font-medium text-stone-800">
+                        <span className="text-base">🍶</span>
+                        <span>Spiced Taak & Sweet Lassi</span>
+                      </div>
+                      <span className="font-bold text-[#2D6A4F] bg-white px-2 py-0.5 rounded-lg border border-stone-200">
+                        2 pkt / 500ml
                       </span>
                     </div>
                   </div>

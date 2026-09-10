@@ -1,0 +1,215 @@
+{
+  "customers": [
+    {
+      "id": "CUST-001",
+      "name": "Ganesh Kanaki",
+      "mobile": "8600476638",
+      "email": "iamganeshkanaki@gmail.com",
+      "address": "J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment",
+      "city": "Solapur",
+      "pincode": "413005",
+      "createdAt": "2026-09-01T10:30:00.000Z"
+    },
+    {
+      "id": "CUST-002",
+      "name": "Priya Sharma",
+      "mobile": "9845123456",
+      "email": "priya.sharma@example.com",
+      "address": "Flat 302, Lotus Apartments, MG Road",
+      "city": "Solapur",
+      "pincode": "413005",
+      "createdAt": "2026-09-05T14:15:00.000Z"
+    },
+    {
+      "id": "CUST-003",
+      "name": "Rahul Patil",
+      "mobile": "9373173377",
+      "email": "rahul.patil@example.com",
+      "address": "14/B, Gokul Nagar, Market Road",
+      "city": "Solapur",
+      "pincode": "413005",
+      "createdAt": "2026-09-08T09:45:00.000Z"
+    }
+  ],
+  "orders": [
+    {
+      "id": "ORD-001",
+      "orderNumber": "KKS-001",
+      "customerId": "CUST-001",
+      "customerName": "Ganesh Kanaki",
+      "mobile": "8600476638",
+      "email": "iamganeshkanaki@gmail.com",
+      "address": "J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment",
+      "city": "Solapur",
+      "pincode": "413005",
+      "orderDate": "2026-09-01",
+      "totalItems": 6,
+      "source": "Manual Entry",
+      "status": "Completed",
+      "createdAt": "2026-09-01T10:35:00.000Z",
+      "items": [
+        {
+          "id": "ITEM-1",
+          "name": "Fresh Curd (Dahi)",
+          "quantity": 2,
+          "unit": "kg",
+          "notes": "Daily Fresh Pot Curd"
+        },
+        {
+          "id": "ITEM-2",
+          "name": "Fresh Malai",
+          "quantity": 250,
+          "unit": "g",
+          "notes": "Thick Pure Cream"
+        },
+        {
+          "id": "ITEM-3",
+          "name": "Pure Whole Milk",
+          "quantity": 3,
+          "unit": "litre",
+          "notes": "Morning Fresh Batch"
+        },
+        {
+          "id": "ITEM-4",
+          "name": "Fresh Soft Paneer",
+          "quantity": 500,
+          "unit": "g",
+          "notes": "Melt in mouth"
+        },
+        {
+          "id": "ITEM-5",
+          "name": "Spiced Taak (Buttermilk)",
+          "quantity": 2,
+          "unit": "packet",
+          "notes": "Roasted jeera & rock salt"
+        },
+        {
+          "id": "ITEM-6",
+          "name": "Sona Masoori Rice",
+          "quantity": 10,
+          "unit": "kg",
+          "notes": "Aged rice preferred"
+        }
+      ]
+    },
+    {
+      "id": "ORD-002",
+      "orderNumber": "KKS-002",
+      "customerId": "CUST-001",
+      "customerName": "Ganesh Kanaki",
+      "mobile": "8600476638",
+      "email": "iamganeshkanaki@gmail.com",
+      "address": "J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment",
+      "city": "Solapur",
+      "pincode": "413005",
+      "orderDate": "2026-09-07",
+      "totalItems": 5,
+      "source": "Image Upload",
+      "status": "Ready",
+      "createdAt": "2026-09-07T11:20:00.000Z",
+      "items": [
+        {
+          "id": "ITEM-7",
+          "name": "Fresh Curd (Dahi)",
+          "quantity": 1,
+          "unit": "kg",
+          "notes": "Thick dahi"
+        },
+        {
+          "id": "ITEM-8",
+          "name": "Rich Sweet Lassi",
+          "quantity": 2,
+          "unit": "glass",
+          "notes": "Cardamom & malai topped"
+        },
+        {
+          "id": "ITEM-9",
+          "name": "Farm Fresh Tomatoes",
+          "quantity": 2,
+          "unit": "kg",
+          "notes": "Ripe red"
+        },
+        {
+          "id": "ITEM-10",
+          "name": "Pure Cow Ghee",
+          "quantity": 500,
+          "unit": "g",
+          "notes": "Organic"
+        },
+        {
+          "id": "ITEM-11",
+          "name": "Whole Wheat Atta",
+          "quantity": 5,
+          "unit": "kg",
+          "notes": "Chakki fresh"
+        }
+      ]
+    },
+    {
+      "id": "ORD-003",
+      "orderNumber": "KKS-003",
+      "customerId": "CUST-002",
+      "customerName": "Priya Sharma",
+      "mobile": "9845123456",
+      "email": "priya.sharma@example.com",
+      "address": "Flat 302, Lotus Apartments, MG Road",
+      "city": "Solapur",
+      "pincode": "413005",
+      "orderDate": "2026-09-09",
+      "totalItems": 4,
+      "source": "Manual Entry",
+      "status": "Processing",
+      "createdAt": "2026-09-09T16:00:00.000Z",
+      "items": [
+        {
+          "id": "ITEM-12",
+          "name": "Fresh Soft Paneer",
+          "quantity": 500,
+          "unit": "g",
+          "notes": "For paneer tikka"
+        },
+        {
+          "id": "ITEM-13",
+          "name": "Spiced Taak (Buttermilk)",
+          "quantity": 2,
+          "unit": "packet",
+          "notes": "Chilled"
+        },
+        {
+          "id": "ITEM-14",
+          "name": "Basmati Rice Supreme",
+          "quantity": 5,
+          "unit": "kg",
+          "notes": "Long grain"
+        },
+        {
+          "id": "ITEM-15",
+          "name": "Toor Dal",
+          "quantity": 2,
+          "unit": "kg",
+          "notes": "Unpolished"
+        }
+      ]
+    }
+  ],
+  "feedback": [
+    {
+      "id": "FB-001",
+      "customerName": "Ganesh Kanaki",
+      "mobile": "8600476638",
+      "orderNumber": "KKS-001",
+      "rating": 5,
+      "feedback": "The fresh pot curd (dahi) and malai are extraordinarily thick and delicious! Pure milk and soft paneer delivered fresh early morning at Pragati Chowk, Vidi Gharkul, Solapur. Best grocery and dairy partner!",
+      "createdAt": "2026-09-02T15:00:00.000Z"
+    },
+    {
+      "id": "FB-002",
+      "customerName": "Priya Sharma",
+      "mobile": "9845123456",
+      "orderNumber": "KKS-003",
+      "rating": 5,
+      "feedback": "The handwritten grocery list upload worked like magic! Plus their fresh spiced taak and lassi are heavenly in the afternoon.",
+      "createdAt": "2026-09-09T18:20:00.000Z"
+    }
+  ]
+}

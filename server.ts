@@ -69,11 +69,11 @@ const initialSeed = {
     {
       id: 'CUST-001',
       name: 'Ganesh Kanaki',
-      mobile: '9876543210',
+      mobile: '8600476638',
       email: 'iamganeshkanaki@gmail.com',
-      address: 'Plot 42, Green Meadows, 5th Main',
-      city: 'Hubballi',
-      pincode: '580020',
+      address: 'J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment',
+      city: 'Solapur',
+      pincode: '413005',
       createdAt: '2026-09-01T10:30:00.000Z',
     },
     {
@@ -82,18 +82,18 @@ const initialSeed = {
       mobile: '9845123456',
       email: 'priya.sharma@example.com',
       address: 'Flat 302, Lotus Apartments, MG Road',
-      city: 'Bengaluru',
-      pincode: '560001',
+      city: 'Solapur',
+      pincode: '413005',
       createdAt: '2026-09-05T14:15:00.000Z',
     },
     {
       id: 'CUST-003',
       name: 'Rahul Patil',
-      mobile: '9765432198',
+      mobile: '9373173377',
       email: 'rahul.patil@example.com',
       address: '14/B, Gokul Nagar, Market Road',
-      city: 'Belagavi',
-      pincode: '590016',
+      city: 'Solapur',
+      pincode: '413005',
       createdAt: '2026-09-08T09:45:00.000Z',
     },
   ],
@@ -103,22 +103,23 @@ const initialSeed = {
       orderNumber: 'KKS-001',
       customerId: 'CUST-001',
       customerName: 'Ganesh Kanaki',
-      mobile: '9876543210',
+      mobile: '8600476638',
       email: 'iamganeshkanaki@gmail.com',
-      address: 'Plot 42, Green Meadows, 5th Main',
-      city: 'Hubballi',
-      pincode: '580020',
+      address: 'J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment',
+      city: 'Solapur',
+      pincode: '413005',
       orderDate: '2026-09-01',
-      totalItems: 5,
+      totalItems: 6,
       source: 'Manual Entry' as const,
       status: 'Completed' as const,
       createdAt: '2026-09-01T10:35:00.000Z',
       items: [
-        { id: 'ITEM-1', name: 'Sona Masoori Rice', quantity: 10, unit: 'kg', notes: 'Aged rice preferred' },
-        { id: 'ITEM-2', name: 'Whole Wheat Atta', quantity: 5, unit: 'kg', notes: 'Chakki fresh' },
-        { id: 'ITEM-3', name: 'Toor Dal', quantity: 2, unit: 'kg', notes: 'Unpolished' },
-        { id: 'ITEM-4', name: 'Sunflower Cooking Oil', quantity: 2, unit: 'litre', notes: 'Pouch' },
-        { id: 'ITEM-5', name: 'Tata Crystal Salt', quantity: 1, unit: 'kg', notes: 'Iodized' },
+        { id: 'ITEM-1', name: 'Fresh Curd (Dahi)', quantity: 2, unit: 'kg', notes: 'Daily Fresh Pot Curd' },
+        { id: 'ITEM-2', name: 'Fresh Malai', quantity: 250, unit: 'g', notes: 'Thick Pure Cream' },
+        { id: 'ITEM-3', name: 'Pure Whole Milk', quantity: 3, unit: 'litre', notes: 'Morning Fresh Batch' },
+        { id: 'ITEM-4', name: 'Fresh Soft Paneer', quantity: 500, unit: 'g', notes: 'Melt in mouth' },
+        { id: 'ITEM-5', name: 'Spiced Taak (Buttermilk)', quantity: 2, unit: 'packet', notes: 'Roasted jeera & rock salt' },
+        { id: 'ITEM-6', name: 'Sona Masoori Rice', quantity: 10, unit: 'kg', notes: 'Aged rice preferred' },
       ],
     },
     {
@@ -126,21 +127,21 @@ const initialSeed = {
       orderNumber: 'KKS-002',
       customerId: 'CUST-001',
       customerName: 'Ganesh Kanaki',
-      mobile: '9876543210',
+      mobile: '8600476638',
       email: 'iamganeshkanaki@gmail.com',
-      address: 'Plot 42, Green Meadows, 5th Main',
-      city: 'Hubballi',
-      pincode: '580020',
+      address: 'J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment',
+      city: 'Solapur',
+      pincode: '413005',
       orderDate: '2026-09-07',
       totalItems: 4,
       source: 'Image Upload' as const,
       status: 'Ready' as const,
       createdAt: '2026-09-07T11:20:00.000Z',
       items: [
-        { id: 'ITEM-6', name: 'Fresh Country Milk', quantity: 3, unit: 'litre', notes: 'Morning delivery' },
-        { id: 'ITEM-7', name: 'Farm Fresh Tomatoes', quantity: 2, unit: 'kg', notes: 'Ripe red' },
-        { id: 'ITEM-8', name: 'Pure Cow Ghee', quantity: 500, unit: 'g', notes: 'Organic' },
-        { id: 'ITEM-9', name: 'Refined Sugar', quantity: 2, unit: 'kg', notes: 'Fine grain' },
+        { id: 'ITEM-7', name: 'Fresh Curd (Dahi)', quantity: 1, unit: 'kg', notes: 'Thick dahi' },
+        { id: 'ITEM-8', name: 'Rich Sweet Lassi', quantity: 2, unit: 'glass', notes: 'Cardamom & malai topped' },
+        { id: 'ITEM-9', name: 'Farm Fresh Tomatoes', quantity: 2, unit: 'kg', notes: 'Ripe red' },
+        { id: 'ITEM-10', name: 'Pure Cow Ghee', quantity: 500, unit: 'g', notes: 'Organic' },
       ],
     },
     {
@@ -170,10 +171,10 @@ const initialSeed = {
     {
       id: 'FB-001',
       customerName: 'Ganesh Kanaki',
-      mobile: '9876543210',
+      mobile: '8600476638',
       orderNumber: 'KKS-001',
       rating: 5,
-      feedback: 'Excellent service! All grocery items were fresh, unpolished, and packed carefully. Loved the fast doorstep delivery.',
+      feedback: 'The fresh pot curd (dahi) and malai are extraordinarily thick and delicious! Pure milk and soft paneer delivered fresh early morning at Pragati Chowk, Vidi Gharkul, Solapur. Best grocery and dairy partner!',
       createdAt: '2026-09-02T15:00:00.000Z',
     },
     {
@@ -182,7 +183,7 @@ const initialSeed = {
       mobile: '9845123456',
       orderNumber: 'KKS-003',
       rating: 5,
-      feedback: 'The handwritten grocery list upload worked like magic. Recognized my scribbled list with 100% accuracy!',
+      feedback: 'The handwritten grocery list upload worked like magic! Plus their fresh spiced taak and lassi are heavenly.',
       createdAt: '2026-09-09T18:20:00.000Z',
     },
   ],
@@ -471,12 +472,13 @@ async function startServer() {
       if (apiKey && apiKey !== 'MY_GEMINI_API_KEY') {
         try {
           const ai = getGemini();
-          const prompt = `You are an expert grocery list OCR and handwriting recognition assistant for "Kanaki's Store", a fresh organic grocery market.
+          const prompt = `You are an expert grocery list OCR and handwriting recognition assistant for "Kanaki's Store & Dairy", a trusted grocery and daily fresh dairy market in Solapur.
 Examine this image of a handwritten or printed grocery list very carefully.
-Extract all grocery items listed, including their quantities and units.
-Normalize item names (e.g. capitalize nicely, e.g. "Basmati Rice", "Sugar", "Toor Dal", "Tomatoes", "Cow Milk").
+Notice items written in English, Marathi, or Hindi (such as curd/dahi/दही, malai/साय/मलाई, milk/doodh/दूध, paneer/पनीर, taak/buttermilk/ताक/मठ्ठा, lassi/लस्सी, rice/tandul/तांदूळ, atta/wheat/गहू/पीठ, dal/toor/डाळ, oil/tel/तेल, sugar/sakhar/साखर, etc.).
+Extract all grocery and dairy items listed, including their quantities and units.
+Normalize item names (e.g. capitalize nicely: "Fresh Curd (Dahi)", "Fresh Malai", "Pure Whole Milk", "Fresh Soft Paneer", "Spiced Taak", "Sweet Lassi", "Basmati Rice", "Whole Wheat Atta", "Toor Dal", "Tomatoes").
 Parse quantities into numbers (e.g. 5, 2, 0.5, 1). If not specified, default to 1.
-Standardize units into common grocery units: 'kg', 'g', 'litre', 'ml', 'packet', 'piece', 'bunch', 'dozen', 'box', 'can'. If not specified, default to 'kg' or 'packet'.
+Standardize units into common grocery units: 'kg', 'g', 'litre', 'ml', 'packet', 'piece', 'bunch', 'dozen', 'box', 'can'. If not specified, default to 'kg', 'litre', or 'packet'.
 If there are any special instructions or brands mentioned, put them in notes.
 
 Return ONLY a JSON array of objects with the exact schema:
@@ -489,8 +491,8 @@ Return ONLY a JSON array of objects with the exact schema:
   }
 ]`;
 
-          const response = await ai.models.generateContent({
-            model: 'gemini-3.8-flash',
+          const responsePromise = ai.models.generateContent({
+            model: 'gemini-2.5-flash',
             contents: [
               {
                 inlineData: {
@@ -504,6 +506,13 @@ Return ONLY a JSON array of objects with the exact schema:
               responseMimeType: 'application/json',
             },
           });
+
+          // 12-second safety timeout
+          const timeoutPromise = new Promise((_, reject) =>
+            setTimeout(() => reject(new Error('OCR recognition request timed out')), 12000)
+          );
+
+          const response: any = await Promise.race([responsePromise, timeoutPromise]);
 
           const responseText = response.text || '[]';
           let extractedItems: any[] = [];
@@ -537,11 +546,12 @@ Return ONLY a JSON array of objects with the exact schema:
       // Heuristic fallback parser when API key is unconfigured or in offline demo mode
       // Provides realistic natural grocery items corresponding to common handwritten lists
       const fallbackItems = [
+        { name: 'Fresh Curd (Dahi)', quantity: 1, unit: 'kg', notes: 'Daily Fresh Pot Curd' },
+        { name: 'Fresh Malai', quantity: 250, unit: 'g', notes: 'Thick Pure Cream' },
+        { name: 'Pure Whole Milk', quantity: 2, unit: 'litre', notes: 'Daily Morning Batch' },
+        { name: 'Fresh Soft Paneer', quantity: 500, unit: 'g', notes: 'Farm Fresh' },
+        { name: 'Spiced Taak (Buttermilk)', quantity: 2, unit: 'packet', notes: 'Chilled' },
         { name: 'Sona Masoori Rice', quantity: 5, unit: 'kg', notes: 'Handwritten item detected' },
-        { name: 'Refined Sugar', quantity: 2, unit: 'kg', notes: 'Handwritten item detected' },
-        { name: 'Fresh Milk', quantity: 3, unit: 'litre', notes: 'Handwritten item detected' },
-        { name: 'Farm Fresh Tomato', quantity: 2, unit: 'kg', notes: 'Handwritten item detected' },
-        { name: 'Toor Dal', quantity: 1, unit: 'kg', notes: 'Handwritten item detected' },
       ];
 
       return res.json({

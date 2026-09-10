@@ -22,10 +22,10 @@ export const Navbar: React.FC<NavbarProps> = ({ currentTab, onNavigate, onOpenCo
         <div className="max-w-7xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-2">
             <Leaf className="w-3.5 h-3.5 text-[#52B788] animate-pulse" />
-            <span>Farm fresh groceries delivered directly to your doorstep • Hubballi & surrounding areas</span>
+            <span>Fresh groceries & daily fresh curd, malai, milk, paneer, taak & lassi • Solapur (413005)</span>
           </div>
           <div className="hidden sm:flex items-center gap-4 text-[11px] text-[#B7E4C7]">
-            <span>📞 Daily Orders: +91 98765 43210</span>
+            <span>📞 Call / WhatsApp: +91 8600476638 / 9373173377</span>
             <span className="w-1 h-1 rounded-full bg-[#52B788]"></span>
             <span>7:00 AM – 9:30 PM</span>
           </div>

@@ -29,8 +29,8 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
             </div>
 
             <p className="text-sm text-[#D8F3DC]/80 leading-relaxed max-w-sm">
-              Delivering premium organic vegetables, daily grocery staples, fresh dairy, and household essentials.
-              Type your list, snap a photo of handwritten notes, and let us handle the rest.
+              Fresh daily curd (dahi), rich malai, pure milk, soft paneer, authentic taak (buttermilk), sweet lassi, and daily grocery staples.
+              Type your list or upload a handwritten note — delivered fresh across Solapur.
             </p>
 
             <div className="pt-2">
@@ -109,24 +109,24 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate, onOpenContact }) => 
           {/* Contact & Hours Column (lg: 4) */}
           <div className="lg:col-span-4 space-y-3">
             <h4 className="text-xs font-bold uppercase tracking-wider text-[#95D5B2]">
-              Store Location & Support
+              Store Location & Contact
             </h4>
             <ul className="space-y-2.5 text-xs text-[#D8F3DC]/90">
               <li className="flex items-start gap-2.5">
                 <MapPin className="w-4 h-4 text-[#74C69D] shrink-0 mt-0.5" />
-                <span>Station Road, Near Gandhi Chowk, Hubballi, Karnataka 580020</span>
+                <span>J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment, Pincode 413005</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Phone className="w-4 h-4 text-[#74C69D] shrink-0" />
-                <span>+91 98765 43210 / +91 836 224455</span>
+                <span>+91 8600476638 (Primary) / +91 9373173377 (Alt)</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Mail className="w-4 h-4 text-[#74C69D] shrink-0" />
-                <span>contact@kanakisstore.com / orders@kanakisstore.com</span>
+                <span>iamganeshkanaki@gmail.com</span>
               </li>
               <li className="flex items-center gap-2.5">
                 <Clock className="w-4 h-4 text-[#74C69D] shrink-0" />
-                <span>Monday – Sunday: 7:00 AM – 9:30 PM</span>
+                <span>Monday – Sunday: 7:00 AM – 9:30 PM (Fresh morning & evening curd batches)</span>
               </li>
             </ul>
           </div>
