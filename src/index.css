@@ -1,0 +1,12 @@
+@import "tailwindcss";
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+.font-display {
+  font-family: 'Outfit', sans-serif;
+}
+
