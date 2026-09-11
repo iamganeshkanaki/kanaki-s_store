@@ -1,5 +1,6 @@
 import React from 'react';
-import { Sparkles, Plus, Check, Phone, Milk, ShieldCheck } from 'lucide-react';
+import { Sparkles, Plus, Check, Phone, Milk, ShieldCheck, Box, Eye } from 'lucide-react';
+import { motion, AnimatePresence } from 'motion/react';
 
 interface DairyItem {
   id: string;
@@ -78,11 +79,13 @@ const DAIRY_PRODUCTS: DairyItem[] = [
 interface DairySpecialtyBannerProps {
   onQuickAddItem: (item: { name: string; quantity: number; unit: string; notes: string }) => void;
   onOrderDairyNow: () => void;
+  onView3D?: (model: 'paneer' | 'curd' | 'milk') => void;
 }
 
 export const DairySpecialtyBanner: React.FC<DairySpecialtyBannerProps> = ({
   onQuickAddItem,
   onOrderDairyNow,
+  onView3D,
 }) => {
   const [addedItem, setAddedItem] = React.useState<string | null>(null);
 
@@ -117,13 +120,23 @@ export const DairySpecialtyBanner: React.FC<DairySpecialtyBannerProps> = ({
             </p>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2.5 flex-wrap sm:flex-nowrap">
+            {onView3D && (
+              <button
+                type="button"
+                onClick={() => onView3D('paneer')}
+                className="inline-flex items-center gap-1.5 px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs font-bold transition-all shadow-xs shadow-amber-700/20 active:scale-95"
+              >
+                <Box className="w-3.5 h-3.5" />
+                <span>360° 3D Paneer View</span>
+              </button>
+            )}
             <a
               href="tel:8600476638"
               className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-white border border-[#2D6A4F]/30 text-xs font-bold text-[#1B4332] hover:bg-[#EAF5EE] transition-colors shadow-2xs"
             >
               <Phone className="w-3.5 h-3.5 text-[#2D6A4F]" />
-              <span>Order by Call: 8600476638</span>
+              <span>Order by Call</span>
             </a>
             <button
               onClick={onOrderDairyNow}
@@ -136,18 +149,27 @@ export const DairySpecialtyBanner: React.FC<DairySpecialtyBannerProps> = ({
 
         {/* 6-Card Product Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {DAIRY_PRODUCTS.map((prod) => {
+          {DAIRY_PRODUCTS.map((prod, idx) => {
             const isJustAdded = addedItem === prod.id;
             return (
-              <div
+              <motion.div
                 key={prod.id}
-                className="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-xs hover:border-[#2D6A4F]/50 hover:shadow-md transition-all flex flex-col justify-between group"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-40px' }}
+                transition={{ duration: 0.4, delay: idx * 0.08 }}
+                whileHover={{ y: -6, transition: { duration: 0.2 } }}
+                className="bg-white rounded-2xl p-5 border border-[#E8E2D9] shadow-xs hover:border-[#2D6A4F]/60 hover:shadow-lg transition-shadow flex flex-col justify-between group"
               >
                 <div>
                   <div className="flex items-start justify-between gap-2 mb-3">
-                    <div className="w-12 h-12 rounded-xl bg-[#FAF9F5] border border-stone-200/80 flex items-center justify-center text-2xl group-hover:scale-105 transition-transform">
+                    <motion.div
+                      whileHover={{ scale: 1.15, rotate: 6 }}
+                      transition={{ type: 'spring', stiffness: 400, damping: 10 }}
+                      className="w-12 h-12 rounded-xl bg-[#FAF9F5] border border-stone-200/80 flex items-center justify-center text-2xl"
+                    >
                       {prod.icon}
-                    </div>
+                    </motion.div>
                     <span className="text-[10px] font-bold uppercase tracking-wider px-2.5 py-0.5 rounded-full bg-[#EAF5EE] text-[#1B4332] border border-[#B7E4C7]/50">
                       {prod.badge}
                     </span>
@@ -168,33 +190,65 @@ export const DairySpecialtyBanner: React.FC<DairySpecialtyBannerProps> = ({
                   </div>
                 </div>
 
-                <div className="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between">
-                  <span className="text-xs font-bold text-stone-700 bg-[#FAF9F5] px-2.5 py-1 rounded-lg border border-stone-200">
-                    Qty: {prod.defaultQty} {prod.unit}
-                  </span>
+                <div className="pt-4 mt-4 border-t border-stone-100 flex items-center justify-between gap-2 flex-wrap sm:flex-nowrap">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="text-xs font-bold text-stone-700 bg-[#FAF9F5] px-2.5 py-1 rounded-lg border border-stone-200">
+                      Qty: {prod.defaultQty} {prod.unit}
+                    </span>
+                    {onView3D && (prod.id === 'dairy-paneer' || prod.id === 'dairy-curd' || prod.id === 'dairy-milk') && (
+                      <button
+                        type="button"
+                        onClick={() =>
+                          onView3D(
+                            prod.id === 'dairy-paneer' ? 'paneer' : prod.id === 'dairy-curd' ? 'curd' : 'milk'
+                          )
+                        }
+                        className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-amber-50 hover:bg-amber-100 text-amber-900 border border-amber-200/80 text-[11px] font-bold transition-colors cursor-pointer group/btn"
+                        title="View 3D 360° interactive view"
+                      >
+                        <Box className="w-3 h-3 text-amber-700 group-hover/btn:rotate-12 transition-transform" />
+                        <span>360° 3D</span>
+                      </button>
+                    )}
+                  </div>
 
-                  <button
+                  <motion.button
+                    whileTap={{ scale: 0.92 }}
                     onClick={() => handleAdd(prod)}
-                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-all ${
+                    className={`inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-bold transition-colors ${
                       isJustAdded
-                        ? 'bg-emerald-600 text-white'
-                        : 'bg-[#2D6A4F] text-white hover:bg-[#1B4332] active:scale-95'
+                        ? 'bg-emerald-600 text-white shadow-xs'
+                        : 'bg-[#2D6A4F] text-white hover:bg-[#1B4332]'
                     }`}
                   >
-                    {isJustAdded ? (
-                      <>
-                        <Check className="w-3.5 h-3.5" />
-                        <span>Added!</span>
-                      </>
-                    ) : (
-                      <>
-                        <Plus className="w-3.5 h-3.5" />
-                        <span>Add to List</span>
-                      </>
-                    )}
-                  </button>
+                    <AnimatePresence mode="wait">
+                      {isJustAdded ? (
+                        <motion.span
+                          key="added"
+                          initial={{ scale: 0.6, opacity: 0 }}
+                          animate={{ scale: 1, opacity: 1 }}
+                          exit={{ scale: 0.6, opacity: 0 }}
+                          className="flex items-center gap-1"
+                        >
+                          <Check className="w-3.5 h-3.5 stroke-[3]" />
+                          <span>Added!</span>
+                        </motion.span>
+                      ) : (
+                        <motion.span
+                          key="add"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          exit={{ opacity: 0 }}
+                          className="flex items-center gap-1"
+                        >
+                          <Plus className="w-3.5 h-3.5" />
+                          <span>Add to List</span>
+                        </motion.span>
+                      )}
+                    </AnimatePresence>
+                  </motion.button>
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

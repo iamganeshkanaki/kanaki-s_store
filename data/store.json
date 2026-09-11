@@ -8,7 +8,8 @@
       "address": "J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment",
       "city": "Solapur",
       "pincode": "413005",
-      "createdAt": "2026-09-01T10:30:00.000Z"
+      "createdAt": "2026-09-01T10:30:00.000Z",
+      "updatedAt": "2026-09-11T15:21:10.280Z"
     },
     {
       "id": "CUST-002",
@@ -32,6 +33,56 @@
     }
   ],
   "orders": [
+    {
+      "id": "ORD-004",
+      "orderNumber": "KKS-20260911-004",
+      "customerId": "CUST-001",
+      "customerName": "Ganesh Kanaki",
+      "mobile": "8600476638",
+      "email": "iamganeshkanaki@gmail.com",
+      "address": "J-2 / 95 pragati chowk vidi gharkul solapur near sona chandi aprtment",
+      "city": "Solapur",
+      "pincode": "413005",
+      "orderDate": "2026-09-11",
+      "totalItems": 4,
+      "source": "Manual Entry",
+      "status": "Pending",
+      "items": [
+        {
+          "id": "ITEM-1789140070281-1",
+          "orderId": "ORD-004",
+          "name": "Fresh Curd (Dahi)",
+          "quantity": 2,
+          "unit": "kg",
+          "notes": "Thick morning batch"
+        },
+        {
+          "id": "ITEM-1789140070281-2",
+          "orderId": "ORD-004",
+          "name": "Fresh Malai",
+          "quantity": 500,
+          "unit": "g",
+          "notes": "Pure cream"
+        },
+        {
+          "id": "ITEM-1789140070281-3",
+          "orderId": "ORD-004",
+          "name": "Fresh Soft Paneer",
+          "quantity": 1,
+          "unit": "kg",
+          "notes": "Farm Fresh"
+        },
+        {
+          "id": "ITEM-1789140070281-4",
+          "orderId": "ORD-004",
+          "name": "Sweet Delicious Lassi",
+          "quantity": 4,
+          "unit": "bottle",
+          "notes": "Chilled"
+        }
+      ],
+      "createdAt": "2026-09-11T15:21:10.281Z"
+    },
     {
       "id": "ORD-001",
       "orderNumber": "KKS-001",

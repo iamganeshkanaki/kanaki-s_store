@@ -24,6 +24,7 @@ import {
   Leaf
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import { motion, AnimatePresence } from 'motion/react';
 import { api } from '../services/api';
 import { GroceryItem, Order } from '../types';
 
@@ -442,11 +443,20 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
         </div>
       </div>
 
-      {/* ========================================================= */}
-      {/* STEP 1: CUSTOMER INFORMATION FORM */}
-      {/* ========================================================= */}
-      {step === 1 && (
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E8E2D9] shadow-sm">
+      {/* Steps Content Wrapped in AnimatePresence */}
+      <AnimatePresence mode="wait">
+        {/* ========================================================= */}
+        {/* STEP 1: CUSTOMER INFORMATION FORM */}
+        {/* ========================================================= */}
+        {step === 1 && (
+          <motion.div
+            key="step-1"
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25 }}
+            className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E8E2D9] shadow-sm"
+          >
           <div className="flex items-center gap-3 pb-6 border-b border-stone-100 mb-6">
             <div className="w-10 h-10 rounded-2xl bg-[#EAF5EE] text-[#2D6A4F] flex items-center justify-center">
               <User className="w-5 h-5" />
@@ -637,14 +647,21 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
               <ArrowRight className="w-4 h-4" />
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* ========================================================= */}
       {/* STEP 2: GROCERY LIST CREATION (OPTIONS A & B) */}
       {/* ========================================================= */}
       {step === 2 && (
-        <div className="space-y-6">
+        <motion.div
+          key="step-2"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.25 }}
+          className="space-y-6"
+        >
           {/* Method Selector Tabs */}
           <div className="bg-white rounded-2xl p-2 border border-[#E8E2D9] shadow-2xs flex gap-2">
             <button
@@ -778,21 +795,49 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
 
               {/* Preview Thumbnail and OCR Status */}
               {uploadedImage && (
-                <div className="flex items-start gap-4 p-4 rounded-2xl bg-[#EAF5EE] border border-[#D8F3DC]">
-                  <img
-                    src={uploadedImage}
-                    alt="Grocery List Upload"
-                    className="w-24 h-24 object-cover rounded-xl border border-[#95D5B2] shadow-xs shrink-0"
-                  />
-                  <div className="space-y-1">
-                    <p className="text-xs font-bold text-[#1B4332] uppercase tracking-wider">
-                      OCR Extraction Status
-                    </p>
-                    {isExtractingOCR ? (
-                      <p className="text-xs text-stone-600 flex items-center gap-2">
-                        <Loader2 className="w-3.5 h-3.5 animate-spin text-[#2D6A4F]" />
-                        Reading handwriting and categorizing quantities & units...
+                <div className="flex flex-col sm:flex-row items-start gap-4 p-4 rounded-2xl bg-[#EAF5EE] border border-[#D8F3DC] shadow-xs">
+                  <div className="relative w-28 h-28 shrink-0 overflow-hidden rounded-xl border-2 border-[#52B788] shadow-sm bg-white">
+                    <img
+                      src={uploadedImage}
+                      alt="Grocery List Upload"
+                      className="w-full h-full object-cover"
+                    />
+                    {isExtractingOCR && (
+                      <>
+                        <motion.div
+                          animate={{ top: ['0%', '100%', '0%'] }}
+                          transition={{ duration: 1.8, repeat: Infinity, ease: 'easeInOut' }}
+                          className="absolute left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#52B788] to-transparent shadow-[0_0_10px_#52B788] z-10"
+                        />
+                        <div className="absolute inset-0 bg-[#2D6A4F]/10 pointer-events-none" />
+                      </>
+                    )}
+                  </div>
+                  <div className="space-y-1.5 flex-1">
+                    <div className="flex items-center gap-2">
+                      <p className="text-xs font-bold text-[#1B4332] uppercase tracking-wider">
+                        OCR Extraction Status
                       </p>
+                      {isExtractingOCR && (
+                        <span className="inline-flex items-center gap-1 text-[10px] font-bold px-2 py-0.5 rounded-full bg-emerald-200 text-emerald-900 animate-pulse">
+                          Scanning with AI...
+                        </span>
+                      )}
+                    </div>
+                    {isExtractingOCR ? (
+                      <div className="space-y-1">
+                        <p className="text-xs text-stone-700 flex items-center gap-2 font-medium">
+                          <Loader2 className="w-3.5 h-3.5 animate-spin text-[#2D6A4F]" />
+                          Reading handwriting and categorizing quantities & units...
+                        </p>
+                        <div className="w-full bg-emerald-100 rounded-full h-1.5 overflow-hidden">
+                          <motion.div
+                            animate={{ x: ['-100%', '100%'] }}
+                            transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
+                            className="w-1/2 h-full bg-[#2D6A4F] rounded-full"
+                          />
+                        </div>
+                      </div>
                     ) : (
                       <p className="text-xs font-medium text-[#1B4332]">
                         {ocrSuccessMessage ||
@@ -1014,14 +1059,21 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
               </button>
             </div>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* ========================================================= */}
       {/* STEP 3: REVIEW & FINAL CONFIRMATION */}
       {/* ========================================================= */}
       {step === 3 && (
-        <div className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E8E2D9] shadow-sm space-y-6">
+        <motion.div
+          key="step-3"
+          initial={{ opacity: 0, y: 12 }}
+          animate={{ opacity: 1, y: 0 }}
+          exit={{ opacity: 0, y: -12 }}
+          transition={{ duration: 0.25 }}
+          className="bg-white rounded-3xl p-6 sm:p-10 border border-[#E8E2D9] shadow-sm space-y-6"
+        >
           <div className="flex items-center justify-between pb-4 border-b border-stone-100">
             <div>
               <h3 className="text-xl sm:text-2xl font-bold text-[#1B4332] font-display">
@@ -1146,18 +1198,30 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
               )}
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
 
       {/* ========================================================= */}
       {/* STEP 4: ORDER SUCCESS CONFIRMATION */}
       {/* ========================================================= */}
       {step === 4 && submittedOrder && (
-        <div className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E8E2D9] shadow-xl text-center space-y-6 animate-fadeIn">
+        <motion.div
+          key="step-4"
+          initial={{ opacity: 0, scale: 0.94, y: 15 }}
+          animate={{ opacity: 1, scale: 1, y: 0 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.35, ease: 'easeOut' }}
+          className="bg-white rounded-3xl p-8 sm:p-12 border border-[#E8E2D9] shadow-xl text-center space-y-6"
+        >
           {/* Nature Sprout Success Icon */}
-          <div className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] text-white flex items-center justify-center mx-auto shadow-lg shadow-[#2D6A4F]/30">
+          <motion.div
+            initial={{ scale: 0, rotate: -30 }}
+            animate={{ scale: 1, rotate: 0 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 18, delay: 0.1 }}
+            className="w-20 h-20 rounded-3xl bg-gradient-to-br from-[#2D6A4F] to-[#1B4332] text-white flex items-center justify-center mx-auto shadow-lg shadow-[#2D6A4F]/30"
+          >
             <span className="text-4xl">🌿</span>
-          </div>
+          </motion.div>
 
           <div className="space-y-2">
             <span className="inline-block px-3 py-1 rounded-full text-xs font-bold bg-[#EAF5EE] text-[#1B4332]">
@@ -1218,12 +1282,12 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
                   mobile: '',
                   email: '',
                   address: '',
-                  city: 'Hubballi',
-                  pincode: '',
+                  city: 'Solapur',
+                  pincode: '413005',
                 });
                 setItems([
-                  { id: '1', name: 'Sona Masoori Rice', quantity: 5, unit: 'kg', notes: '' },
-                  { id: '2', name: 'Toor Dal', quantity: 2, unit: 'kg', notes: '' },
+                  { id: '1', name: 'Fresh Curd (Dahi)', quantity: 1, unit: 'kg', notes: 'Fresh morning batch' },
+                  { id: '2', name: 'Sona Masoori Rice', quantity: 5, unit: 'kg', notes: '' },
                 ]);
                 setUploadedImage(null);
                 setSubmittedOrder(null);
@@ -1234,8 +1298,9 @@ export const GroceryWizard: React.FC<GroceryWizardProps> = ({
               <span>Submit Another Grocery List</span>
             </button>
           </div>
-        </div>
+        </motion.div>
       )}
+      </AnimatePresence>
     </div>
   );
 };

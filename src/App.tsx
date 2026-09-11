@@ -25,16 +25,65 @@ import { FeedbackSection } from './components/FeedbackSection';
 import { AdminDashboard } from './components/AdminDashboard';
 import { Footer } from './components/Footer';
 import { ContactModal } from './components/ContactModal';
+import { Dairy3DViewer } from './components/Dairy3DViewer';
+import { VegetableShowcase } from './components/VegetableShowcase';
 import { Order } from './types';
 
 export default function App() {
-  const [currentTab, setCurrentTab] = useState<'home' | 'create' | 'orders' | 'feedback' | 'admin'>('home');
+  const [currentTab, setCurrentTab] = useState<'home' | 'create' | 'orders' | 'feedback' | 'admin' | '3d-dairy'>('home');
   const [wizardInitialOption, setWizardInitialOption] = useState<'manual' | 'upload'>('manual');
   const [activeTrackingNumber, setActiveTrackingNumber] = useState<string>('');
   const [isContactOpen, setIsContactOpen] = useState(false);
+  const [selected3DModel, setSelected3DModel] = useState<'paneer' | 'curd' | 'milk'>('paneer');
   const [preselectedDairyItems, setPreselectedDairyItems] = useState<
     Array<{ name: string; quantity: number; unit: string; notes?: string }> | undefined
   >(undefined);
+
+  const handleOpen3DViewer = (model: 'paneer' | 'curd' | 'milk' = 'paneer') => {
+    setSelected3DModel(model);
+    const el = document.getElementById('paneer-3d-section');
+    if (el && currentTab === 'home') {
+      el.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      setCurrentTab('3d-dairy');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  };
+
+  const handleJumpToVegetables = () => {
+    if (currentTab !== 'home') {
+      setCurrentTab('home');
+      setTimeout(() => {
+        const el = document.getElementById('vegetables-importance-showcase');
+        if (el) el.scrollIntoView({ behavior: 'smooth' });
+      }, 120);
+    } else {
+      const el = document.getElementById('vegetables-importance-showcase');
+      if (el) el.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
+  const handleAddVegetableToList = (item: { name: string; quantity: number; unit: string; notes?: string }) => {
+    setPreselectedDairyItems([
+      { name: item.name, quantity: item.quantity, unit: item.unit, notes: item.notes || 'Daily Solapur Farm Harvest' },
+      { name: 'Fresh Curd (Dahi)', quantity: 1, unit: 'kg', notes: 'Pot Set' },
+      { name: 'Pure Cow Milk', quantity: 1, unit: 'litre', notes: 'Daily Fresh' },
+    ]);
+    setWizardInitialOption('manual');
+    setCurrentTab('create');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const handleAdd3DItemToList = (item: { name: string; quantity: number; unit: string; notes?: string }) => {
+    setPreselectedDairyItems([
+      { name: item.name, quantity: item.quantity, unit: item.unit, notes: item.notes || '3D Inspected Fresh Daily Batch' },
+      { name: 'Pure Whole Milk', quantity: 1, unit: 'litre', notes: 'Daily Fresh' },
+      { name: 'Fresh Curd (Dahi)', quantity: 1, unit: 'kg', notes: 'Pot Set' },
+    ]);
+    setWizardInitialOption('manual');
+    setCurrentTab('create');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const handleStartManual = () => {
     setWizardInitialOption('manual');
@@ -79,6 +128,7 @@ export default function App() {
         currentTab={currentTab}
         onNavigate={setCurrentTab}
         onOpenContact={() => setIsContactOpen(true)}
+        onJumpToVegetables={handleJumpToVegetables}
       />
 
       <main className="flex-1">
@@ -97,7 +147,19 @@ export default function App() {
             <DairySpecialtyBanner
               onQuickAddItem={handleQuickAddDairyItem}
               onOrderDairyNow={handleStartManual}
+              onView3D={handleOpen3DViewer}
             />
+
+            {/* Interactive 360-Degree 3D Dairy Inspector Section (Paneer Spotlight) */}
+            <section id="paneer-3d-section" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 scroll-mt-24">
+              <Dairy3DViewer
+                selectedModel={selected3DModel}
+                onAddToList={handleAdd3DItemToList}
+              />
+            </section>
+
+            {/* Fresh Vegetables Importance Showcase with Horizontal Scrolling Animation */}
+            <VegetableShowcase onAddToList={handleAddVegetableToList} />
 
             {/* How It Works (Section 21) */}
             <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -328,6 +390,31 @@ export default function App() {
         {/* ADMIN DASHBOARD VIEW */}
         {/* ========================================================= */}
         {currentTab === 'admin' && <AdminDashboard />}
+
+        {/* ========================================================= */}
+        {/* 360 DEGREE 3D DAIRY VIEW TAB */}
+        {/* ========================================================= */}
+        {currentTab === '3d-dairy' && (
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
+            <div className="flex items-center justify-between">
+              <button
+                onClick={() => setCurrentTab('home')}
+                className="inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-white border border-stone-200 text-xs font-bold text-stone-700 hover:text-[#1B4332] hover:bg-[#EAF5EE] transition-colors shadow-2xs cursor-pointer"
+              >
+                ← Back to Home
+              </button>
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#1B4332] bg-[#EAF5EE] px-3.5 py-1.5 rounded-full border border-[#B7E4C7]">
+                <span className="w-2 h-2 rounded-full bg-[#52B788] animate-pulse"></span>
+                <span>Solapur Store • 360° Real-time 3D Dairy Inspector</span>
+              </div>
+            </div>
+
+            <Dairy3DViewer
+              selectedModel={selected3DModel}
+              onAddToList={handleAdd3DItemToList}
+            />
+          </div>
+        )}
       </main>
 
       {/* Nature Inspired Footer */}

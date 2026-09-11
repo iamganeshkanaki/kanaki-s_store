@@ -1,6 +1,6 @@
 {
   "name": "Kanaki's Store",
-  "description": "Modern nature-inspired grocery list web application with AI OCR image extraction, Excel reporting, customer management, and order tracking.",
+  "description": "Modern nature-inspired grocery list web app with 360° 3D artisanal dairy inspector, daily vegetable health showcase with scrolling animation, AI OCR list extraction, and live order tracking.",
   "requestFramePermissions": ["camera"],
   "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
 }

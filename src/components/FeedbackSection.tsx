@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Star, MessageSquareHeart, Send, CheckCircle2, User, Phone, Hash, AlertCircle, Quote } from 'lucide-react';
+import { motion } from 'motion/react';
 import { Feedback } from '../types';
 import { api } from '../services/api';
 
@@ -231,16 +232,18 @@ export const FeedbackSection: React.FC = () => {
                 </label>
                 <div className="flex flex-wrap gap-1.5">
                   {QUICK_SENTIMENTS.map((sentiment) => (
-                    <button
+                    <motion.button
                       key={sentiment}
                       type="button"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
                       onClick={() =>
                         setFeedback((prev) => (prev ? `${prev} ${sentiment}.` : `${sentiment}.`))
                       }
                       className="px-2.5 py-1 rounded-lg bg-[#FAF8F5] border border-stone-200 text-xs text-stone-700 hover:bg-[#EAF5EE] hover:text-[#1B4332] hover:border-[#40916C] transition-colors"
                     >
                       + {sentiment}
-                    </button>
+                    </motion.button>
                   ))}
                 </div>
               </div>
@@ -261,15 +264,17 @@ export const FeedbackSection: React.FC = () => {
                 />
               </div>
 
-              <button
+              <motion.button
                 id="submit-feedback-btn"
                 type="submit"
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
                 disabled={isSubmitting}
-                className="w-full py-3.5 rounded-xl bg-[#2D6A4F] text-white font-bold text-sm shadow-md shadow-[#2D6A4F]/20 hover:bg-[#1B4332] active:scale-98 transition-all flex items-center justify-center gap-2"
+                className="w-full py-3.5 rounded-xl bg-[#2D6A4F] text-white font-bold text-sm shadow-md shadow-[#2D6A4F]/20 hover:bg-[#1B4332] transition-all flex items-center justify-center gap-2"
               >
                 <Send className="w-4 h-4" />
                 <span>{isSubmitting ? 'Submitting Feedback...' : 'Submit Feedback 🌿'}</span>
-              </button>
+              </motion.button>
             </form>
           </div>
 
@@ -281,10 +286,15 @@ export const FeedbackSection: React.FC = () => {
             </h3>
 
             <div className="space-y-3">
-              {recentFeedbacks.slice(0, 4).map((fb) => (
-                <div
+              {recentFeedbacks.slice(0, 4).map((fb, idx) => (
+                <motion.div
                   key={fb.id}
-                  className="bg-white p-5 rounded-2xl border border-[#E8E2D9] shadow-2xs space-y-2 relative"
+                  initial={{ opacity: 0, y: 15 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.35, delay: idx * 0.08 }}
+                  whileHover={{ y: -3 }}
+                  className="bg-white p-5 rounded-2xl border border-[#E8E2D9] shadow-2xs space-y-2 relative transition-shadow hover:shadow-md"
                 >
                   <Quote className="w-6 h-6 text-[#95D5B2]/30 absolute top-4 right-4 pointer-events-none" />
                   <div className="flex items-center justify-between">
@@ -304,7 +314,7 @@ export const FeedbackSection: React.FC = () => {
                     <span>{fb.orderNumber ? `Ref: ${fb.orderNumber}` : 'Verified Customer'}</span>
                     <span>{fb.createdAt ? fb.createdAt.slice(0, 10) : ''}</span>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </div>
